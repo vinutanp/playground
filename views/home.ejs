@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Signup successful </h1>
+    <% if (typeof user !== 'undefined') { %>
+      <p>Welcome, <strong><%= user.name %></strong>!</p>
+      <p>Email: <%= user.email %></p>
+    <% } else { %>
+      <p>Your account was created.</p>
+    <% } %>
+    <a href="/signup">Back to signup</a>
+  </div>
+</body>
+</html>
