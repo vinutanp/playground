@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
-import uuid from 'uuid';
+import {v4 as uuidv4} from 'uuid';
+import { setUser } from  "../service/auth.js";
 
 let prisma;
 
@@ -71,7 +72,9 @@ export async function userLogin(req, res) {
             return res.render("home", { user });
         }
 
-        const sessionToken = uuid.v4();
+        const sessionToken = uuidv4()
+        setUser(sessionToken,user);
+        res.cookie('uid', sessionToken);
         return res.status(401).json({ error: "Invalid credentials" });
 
     } catch (error) {
